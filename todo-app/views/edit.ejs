@@ -1,0 +1,8 @@
+<form method="POST" action="/edit/<%= todo._id %>">
+    <input type="text" name="title" value="<%= todo.title %>">
+    <select name="status">
+        <option value="pending" <%= todo.status === "pending" ? "selected" : "" %>>Pending</option>
+        <option value="done" <%= todo.status === "done" ? "selected" : "" %>>Done</option>
+    </select>
+    <button type="submit">Save</button>
+</form>

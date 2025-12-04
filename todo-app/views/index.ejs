@@ -1,0 +1,49 @@
+<div class="filters">
+    <h3>فیلتر و جستجو</h3>
+    <form method="GET" action="/">
+        <input type="text" name="search" placeholder="جستجو در عنوان..." value="<%= search %>">
+        <select name="status">
+            <option value="">همه وضعیت‌ها</option>
+            <option value="pending" <%= status === 'pending' ? 'selected' : '' %>>در انتظار</option>
+            <option value="done" <%= status === 'done' ? 'selected' : '' %>>انجام شده</option>
+        </select>
+        <button type="submit">اعمال فیلتر</button>
+        <% if(search || status) { %>
+            <a href="/" style="padding: 10px; text-decoration: none; color: #666;">پاک کردن</a>
+        <% } %>
+    </form>
+</div>
+
+<div class="add-task">
+    <h3>افزودن تسک جدید</h3>
+    <form method="POST" action="/add">
+        <input type="text" name="title" placeholder="تسک جدید را وارد کنید..." required>
+        <button type="submit">افزودن</button>
+    </form>
+</div>
+
+<h3>لیست کارها (<%= todos.length %>)</h3>
+<ul>
+    <% if (todos.length === 0) { %>
+        <li style="justify-content: center; color: #777;">موردی یافت نشد.</li>
+    <% } %>
+
+    <% todos.forEach(todo => { %>
+        <li>
+            <div>
+                <strong><%= todo.title %></strong>
+                <span class="status-badge status-<%= todo.status %>">
+                    <%= todo.status === 'done' ? 'انجام شده' : 'در انتظار' %>
+                </span>
+                <br>
+                <small style="color: #999; font-size: 10px;">
+                    <%= new Date(todo.createdAt).toLocaleString('fa-IR') %>
+                </small>
+            </div>
+            <div class="actions">
+                <a href="/edit/<%= todo._id %>" class="btn-edit">ویرایش</a>
+                <a href="/delete/<%= todo._id %>" class="btn-delete" onclick="return confirm('آیا مطمئن هستید؟')">حذف</a>
+            </div>
+        </li>
+    <% }) %>
+</ul>
