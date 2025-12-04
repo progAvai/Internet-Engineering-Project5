@@ -1,6 +1,6 @@
 # Internet-Engineering-Project5
-#TODO List Practice Project — with MVC + EJS + MongoDB + Caching + Filtering
-#Project Goal
+# TODO List Practice Project — with MVC + EJS + MongoDB + Caching + Filtering
+# Project Goal
 To create a very simple Todo List application that will introduce the student to:
 Complete MVC architecture
 EJS Template Engine and use of express-ejs-layouts
